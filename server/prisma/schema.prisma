@@ -1,0 +1,55 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+
+enum Role {
+  ADMIN
+  LEARNER
+}
+
+enum Difficulty {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
+  role      Role     @default(LEARNER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  progress  Progress[]
+}
+
+model Topic {
+  id          Int      @id @default(autoincrement())
+  title       String
+  content     String   @db.Text
+  category    String   // "Web Dev" or "DSA"
+  difficulty  Difficulty
+  resources   String?  @db.Text // JSON string or comma-separated links
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  progress    Progress[]
+}
+
+model Progress {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  topicId   Int
+  status    String   @default("COMPLETED") // For now just completed or not
+  completedAt DateTime @default(now())
+  
+  user      User     @relation(fields: [userId], references: [id])
+  topic     Topic    @relation(fields: [topicId], references: [id])
+
+  @@unique([userId, topicId])
+}
