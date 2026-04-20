@@ -53,7 +53,7 @@ const getTopicById = async (req, res) => {
     try {
         const { id } = req.params;
         const topic = await prisma.topic.findUnique({
-            where: { id: parseInt(id) },
+            where: { id },
         });
 
         if (!topic) {
@@ -94,7 +94,7 @@ const updateTopic = async (req, res) => {
         const { title, content, category, difficulty, resources } = req.body;
 
         const topic = await prisma.topic.update({
-            where: { id: parseInt(id) },
+            where: { id },
             data: {
                 title,
                 content,
@@ -116,7 +116,7 @@ const deleteTopic = async (req, res) => {
         const { id } = req.params;
 
         await prisma.topic.delete({
-            where: { id: parseInt(id) },
+            where: { id },
         });
 
         res.json({ message: 'Topic deleted successfully' });

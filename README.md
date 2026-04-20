@@ -1,64 +1,111 @@
 # LearnHub
-1. Project Title
-●
-LearnHub – Your Personalized Web Dev & DSA Learning Platform
-2. Problem Statement
-Beginners who want to learn Web Development or Data Structures & Algorithms (DSA)
-often struggle to find a clear, organized learning path.
-They jump between YouTube, MDN, and random blogs — wasting time and losing
-motivation.
-3. System Architecture
-Frontend (React) → Backend (Express API) → Database (MySQL)
-Layer Technology
-Frontend React.js, React Router, TailwindCSS
-Backend Node.js, Express.js
-Database MySQL (Relational Database)
-ORM / Query
-Tool
-Sequelize ORM or Prisma ORM
-Authentication JWT-based login/signup (admin & learner roles)
-Hosting Frontend: Vercel  Backend: Render :
-PlanetScale / Aiven / ClearDB
-4. Key Features
-Category Features
-Authentication &
-Authorization
-Signup/Login using JWT, role-based access (admin/learner)
-CRUD Operations Learning Topics Filtering, Searching, Sorting Pagination Frontend Routing Progress Tracking Hosting Admin can create, update, delete topics/roadmaps; users can
-mark progress
-Each topic has title, content, category, difficulty, and
-resources
-Users can search topics (e.g.,
-or category
-“Promises”), filter by difficulty
-Topic list is paginated for performance
-Pages: Home, Login, Roadmaps, Topic Details, Dashboard
-Users can mark topics as “Completed”
-Both backend and frontend deployed online
-5. Tech Stack
-Layer Technologies
-Frontend React.js, React Router, Axios, TailwindCSS
-Backend Node.js, Express.js
-Database MongoDB (Mongoose ORM)
-Authentication JWT (JSON Web Token)
-Hosting Vercel (Frontend), Render/Railway (Backend), MongoDB Atlas (Database)
-6. API Overview
-Endpoint Method Description Access
-/api/auth/signup POST Register a new user Public
-/api/auth/login POST Authenticate user and return token Public
-/api/topics GET Get all topics (supports search, filter,
-sort, paginate)
-Authenticate
-d
-/api/topics/:id GET Get topic details Authenticate
-d
-Admin
-/api/topics POST Add new topic (title, content, difficulty,
-resources)
-/api/topics/:id PUT Update topic Admin
-/api/topics/:id DELETE Delete topic Admin
-/api/progress/:topicId POST Mark topic as completed Authenticate
-d
-Public
-/api/roadmaps GET Get roadmap by category (Web Dev /
-DSA)
+
+LearnHub is a comprehensive full-stack e-learning platform designed to provide a seamless educational experience. It features a modern, responsive frontend built with React and Vite, paired with a robust backend powered by Node.js, Express, and Prisma.
+
+## 🚀 Features
+
+- **Interactive User Interface**: A fast, responsive, and intuitive UI built with React and styled with Tailwind CSS.
+- **Robust Backend**: A scalable Node.js and Express RESTful API.
+- **Database Management**: Seamless data modeling and migrations using Prisma ORM.
+- **Secure Authentication**: User authentication and authorization handled via JWT and bcrypt.
+- **Modern Tooling**: Leveraging Vite for blazing-fast frontend builds and Nodemon for seamless backend development.
+
+## 🛠️ Tech Stack
+
+### Frontend (`/client`)
+- **Framework**: [React](https://reactjs.org/) (via [Vite](https://vitejs.dev/))
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Routing**: [React Router](https://reactrouter.com/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **HTTP Client**: [Axios](https://axios-http.com/)
+
+### Backend (`/server`)
+- **Runtime**: [Node.js](https://nodejs.org/)
+- **Framework**: [Express.js](https://expressjs.com/)
+- **ORM**: [Prisma](https://www.prisma.io/)
+- **Authentication**: JWT (JSON Web Tokens) & `bcryptjs`
+- **Environment Management**: `dotenv`
+
+## 📁 Project Structure
+
+The project is structured as a monorepo, cleanly separating the client UI from the backend services.
+
+```text
+LearnHub/
+├── client/       # React (Vite) frontend application
+└── server/       # Node.js/Express backend API
+```
+
+## ⚙️ Installation & Setup
+
+### Prerequisites
+
+Ensure you have the following installed on your local machine:
+- **Node.js** (v16 or higher recommended)
+- **npm** or **yarn**
+- **Database** (PostgreSQL, MySQL, etc., depending on your Prisma schema configuration)
+
+### 1. Clone the Repository
+
+```bash
+git clone <repository-url>
+cd LearnHub
+```
+
+### 2. Setup the Backend (Server)
+
+Navigate to the server directory and install dependencies:
+
+```bash
+cd server
+npm install
+```
+
+Set up your environment variables by creating a `.env` file in the `server` directory:
+
+```env
+DATABASE_URL="your_database_connection_string"
+JWT_SECRET="your_jwt_secret"
+PORT=5000
+```
+
+Run database migrations to set up your schema:
+
+```bash
+npx prisma migrate dev
+```
+
+Start the backend development server:
+
+```bash
+npm run dev
+```
+
+### 3. Setup the Frontend (Client)
+
+Open a new terminal, navigate to the client directory, and install dependencies:
+
+```bash
+cd client
+npm install
+```
+
+Start the frontend development server:
+
+```bash
+npm run dev
+```
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome! 
+
+1. Fork the project.
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`).
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`).
+4. Push to the branch (`git push origin feature/AmazingFeature`).
+5. Open a Pull Request.
+
+## 📄 License
+
+This project is licensed under the ISC License.

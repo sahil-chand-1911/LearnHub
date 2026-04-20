@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 async function main() {
     console.log('Seeding database...');
 
-    // Web Development Topics
+    
     const webDevTopics = [
         {
             title: 'HTML Fundamentals',

@@ -3,10 +3,9 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
 }
-
 
 enum Role {
   ADMIN
@@ -20,7 +19,7 @@ enum Difficulty {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
   email     String   @unique
   password  String
   role      Role     @default(LEARNER)
@@ -30,21 +29,21 @@ model User {
 }
 
 model Topic {
-  id          Int      @id @default(autoincrement())
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
   title       String
-  content     String   @db.Text
+  content     String
   category    String   // "Web Dev" or "DSA"
   difficulty  Difficulty
-  resources   String?  @db.Text // JSON string or comma-separated links
+  resources   String?  // JSON string or comma-separated links
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   progress    Progress[]
 }
 
 model Progress {
-  id        Int      @id @default(autoincrement())
-  userId    Int
-  topicId   Int
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String   @db.ObjectId
+  topicId   String   @db.ObjectId
   status    String   @default("COMPLETED") // For now just completed or not
   completedAt DateTime @default(now())
   

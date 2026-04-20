@@ -29,7 +29,7 @@ const markTopicComplete = async (req, res) => {
             where: {
                 userId_topicId: {
                     userId,
-                    topicId: parseInt(topicId),
+                    topicId,
                 },
             },
             update: {
@@ -37,7 +37,7 @@ const markTopicComplete = async (req, res) => {
             },
             create: {
                 userId,
-                topicId: parseInt(topicId),
+                topicId,
                 status: 'COMPLETED',
             },
         });
