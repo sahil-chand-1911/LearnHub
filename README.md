@@ -43,7 +43,7 @@ LearnHub/
 Ensure you have the following installed on your local machine:
 - **Node.js** (v16 or higher recommended)
 - **npm** or **yarn**
-- **Database** (PostgreSQL, MySQL, etc., depending on your Prisma schema configuration)
+- **Database** (MongoDB, as configured in the Prisma schema)
 
 ### 1. Clone the Repository
 
